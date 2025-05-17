@@ -1,0 +1,151 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { 
+  title, 
+  description = "Hiwi's Beauty - Hair Salon in Birmingham specializing in all hair types including African, Asian, Caucasian, and Caribbean"
+} = Astro.props;
+
+// Define navigation links
+const navLinks = [
+  { text: 'Home', href: '#' },
+  { text: 'Services', href: '#services' },
+  { text: 'Pricing', href: '#pricing' },
+  { text: 'Gallery', href: '#gallery' },
+  { text: 'Products', href: '#products' },
+  { text: 'Contact', href: '#contact' }
+];
+
+// Social media links
+const socialLinks = [
+  { name: 'Instagram', icon: 'fa-instagram', url: 'https://www.instagram.com/hiwibeauty/' },
+  { name: 'TikTok', icon: 'fa-tiktok', url: 'https://www.tiktok.com/@hiwibeauty' },
+  { name: 'Facebook', icon: 'fa-facebook-f', url: 'https://www.facebook.com/hiwibeauty' },
+  { name: 'Snapchat', icon: 'fa-snapchat-ghost', url: 'https://www.snapchat.com/add/hiwibeauty' },
+];
+
+import "../styles/global.css";
+import "../styles/social-footer.css";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Droid+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body>
+    <!-- Left Navigation Sidebar -->
+    <div class="left-navigation">
+      <a href="#" class="logo-link">
+        <div class="brand-text">Hiwi's Beauty</div>
+      </a>
+      
+      <nav class="nav-menu">
+        {navLinks.map(link => (
+          <a href={link.href} class="nav-link">{link.text}</a>
+        ))}
+      </nav>
+      
+      <div class="social-footer">
+        {socialLinks.map(social => (
+          <a 
+            href={social.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="social-icon-link px-3"
+            aria-label={social.name}
+          >
+            <i class={`fab ${social.icon}`}></i>
+          </a>
+        ))}
+      </div>
+    </div>
+    
+    <div class="content">
+      <slot />
+    </div>
+    
+    <!-- Mobile Navigation - Shown only on smaller screens -->
+    <div id="mobileNav" class="fixed inset-0 bg-gray-900 bg-opacity-95 z-50 flex-col justify-center items-center hidden">
+      <button id="closeMenu" class="absolute top-4 right-4 text-white" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      
+      <nav class="flex flex-col space-y-6 text-center">
+        {navLinks.map(link => (
+          <a href={link.href} class="text-white text-2xl font-medium tracking-wider uppercase hover:text-gray-300">{link.text}</a>
+        ))}
+      </nav>
+      
+      <div class="mt-12 flex justify-center space-x-6">
+        {socialLinks.map(social => (
+          <a 
+            href={social.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="social-icon-link text-2xl"
+            aria-label={social.name}
+          >
+            <i class={`fab ${social.icon}`}></i>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <script>
+      // Handle mobile menu 
+      document.addEventListener('DOMContentLoaded', () => {
+        // Detect if we're on mobile and update body padding
+        const isMobile = window.innerWidth < 992;
+        if (isMobile) {
+          document.body.style.paddingLeft = '0';
+        }
+        
+        // Mobile menu button (will be added in the index page for mobile)
+        const openMenuBtn = document.getElementById('menuToggle');
+        const closeMenuBtn = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileNav');
+        const mobileLinks = document.querySelectorAll('#mobileNav a');
+        
+        if (openMenuBtn) {
+          openMenuBtn.addEventListener('click', () => {
+            mobileMenu?.classList.replace('hidden', 'flex');
+            document.body.style.overflow = 'hidden';
+          });
+        }
+        
+        if (closeMenuBtn) {
+          closeMenuBtn.addEventListener('click', () => {
+            mobileMenu?.classList.replace('flex', 'hidden');
+            document.body.style.overflow = 'auto';
+          });
+        }
+        
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu?.classList.replace('flex', 'hidden');
+            document.body.style.overflow = 'auto';
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

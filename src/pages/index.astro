@@ -1,0 +1,423 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Services list with prices
+const services = [
+  { name: 'Box braid', price: 'from £55' },
+  { name: 'Base cornrow', price: 'from £25' },
+  { name: 'Ethiopia/Eritrea hair style', price: 'from £35' },
+  { name: 'Men cornrow', price: 'from £25' },
+  { name: 'Weave', price: 'from £30' },
+  { name: 'Sewing', price: 'from £45' },
+  { name: 'Perm/relaxer', price: 'from £35' },
+  { name: 'Hair treatment', price: 'from £20' },
+  { name: 'Wash and blow dry', price: '£15' },
+  { name: 'Ethiopian hair butter treatment', price: '£20' },
+  { name: 'Henna mehndi', price: 'from £10' },
+  { name: 'Waxing', price: 'from £6' },
+  { name: 'Ethiopian/sudanese traditional steam (weyba)', price: 'from £45' },
+  { name: 'Face steam', price: '£15' },
+];
+
+// Service categories
+const serviceCategories = [
+  'Hair Extensions',
+  'Wig Installations',
+  'Cornrows',
+  'Weaving',
+  'Styling',
+  'Cutting',
+  'Braids',
+  'Dreadlocks',
+  'Twists',
+  'Relaxer',
+  'Weave',
+];
+
+// Gallery images
+const galleryImages = Array.from({ length: 14 }, (_, i) => `/salon/image${i}.jpeg`);
+---
+
+<Layout title="Hiwi's Beauty - Hair Salon in Birmingham">
+  <!-- Mobile menu toggle - Only visible on mobile -->
+  <button id="menuToggle" class="fixed top-6 right-6 z-50 lg:hidden bg-[#333e48] text-white p-3 rounded-full shadow-lg" aria-label="Open menu">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+  
+  <!-- Banner/Hero Section -->
+  <div class="banner">
+    <div class="hero-title-wrapper">
+      <h1 class="hero-heading">Hiwi's Beauty Hair Salon for Men & Women</h1>
+      <div class="hero-subheading">
+        <div class="mb-1">174-176 Stratford Road, Sparkbrook, Birmingham B11 1RD</div>
+        <div>Open: Monday - Sunday, 10AM - 10PM</div>
+      </div>
+      <a href="#services" class="hollow-button white mr-4">EXPLORE OUR SERVICES</a>
+      <a href="https://wa.me/447438299084" target="_blank" rel="noopener noreferrer" class="hollow-button white">
+        <i class="fab fa-whatsapp mr-2"></i>BOOK AN APPOINTMENT
+      </a>
+    </div>
+  </div>
+  
+  <!-- Services Section -->
+  <div id="services" class="section">
+    <div class="section-title-group">
+      <h2 class="heading-centered">Our Services</h2>
+      <div class="section-subheading center">
+        Specializing in all hair types including African, Asian, Caucasian, and Caribbean
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+      {serviceCategories.map(category => (
+        <div class="hover-service relative group cursor-pointer overflow-hidden h-full pb-4">
+          <div class="column-0-padding services-20-padding z-10 relative bg-[#f6ede3] h-full flex flex-col items-center">
+            <div class="h3-pricing mt-2">{category.split(' ')[0]}</div>
+            <div class="spacer"></div>
+            <div class="para-centered text-sm px-2 min-h-[3rem] flex items-center justify-center normal-case">{category}</div>
+          </div>
+          
+          <div class="absolute inset-0 bg-[#333e48] flex items-center justify-center opacity-0 group-hover:opacity-95 transition-opacity duration-300">
+            <div class="text-center p-3">
+              <div class="text-white font-medium text-base mb-1 normal-case">{category}</div>
+              <p class="text-white text-xs">Specialized treatment</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <style>
+      .hover-service {
+        transition: transform 0.3s ease;
+      }
+      
+      .hover-service:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      }
+      
+      .hover-service .h3-pricing {
+        transition: all 0.3s ease;
+      }
+      
+      .hover-service:hover .h3-pricing {
+        transform: scale(0.9);
+      }
+      
+      /* Ensure the hover overlay works properly */
+      .group:hover .group-hover\:opacity-95 {
+        opacity: 0.95;
+      }
+    </style>
+  </div>
+  
+  <!-- Pricing Section -->
+  <div id="pricing" class="call-to-action-section brown">
+    <div class="section-title-group">
+      <h2 class="heading-centered">Pricing</h2>
+    </div>
+    
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+      {services.map((service, index) => (
+        <div class="flex justify-between items-center py-2 border-b border-[#f3e9da50]">
+          <h3 class="text-base md:text-lg font-normal capitalize tracking-wide text-[#333e48]">{service.name}</h3>
+          <p class="text-[#333e48] font-medium">{service.price}</p>
+        </div>
+      ))}
+    </div>
+    
+    <div class="mt-12 text-center">
+      <div class="section-subheading center mb-8">Prices may vary depending on hair length, thickness, and style complexity.</div>
+      <a href="https://wa.me/447438299084" target="_blank" rel="noopener noreferrer" class="hollow-button red">
+        <i class="fab fa-whatsapp mr-2"></i>BOOK AN APPOINTMENT
+      </a>
+    </div>
+  </div>
+  
+  <!-- Gallery Section -->
+  <div id="gallery" class="section">
+    <div class="section-title-group">
+      <h2 class="heading-centered">Gallery</h2>
+    </div>
+    
+    <div class="gallery-container mx-auto" id="gallery-container">
+      <!-- Initial items will be loaded here -->
+    </div>
+    
+    <div class="text-center mt-8 mb-4">
+      <button id="load-more" class="hollow-button red text-lg py-4 px-8 animate-pulse">
+        <i class="fas fa-images mr-2"></i>LOAD MORE
+      </button>
+      <button id="collapse-gallery" class="hollow-button white text-lg py-4 px-8 ml-4 hidden">
+        <i class="fas fa-compress-alt mr-2"></i>COLLAPSE GALLERY
+      </button>
+      <p class="text-sm text-gray-600 mt-2">Click to see more of our work</p>
+    </div>
+  </div>
+  
+  <style>
+    .gallery-container {
+      column-count: 1;
+      column-gap: 10px;
+      max-width: 1200px;
+    }
+    
+    @media (min-width: 640px) {
+      .gallery-container {
+        column-count: 2;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      .gallery-container {
+        column-count: 3;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .gallery-container {
+        column-count: 4;
+      }
+    }
+    
+    .gallery-item {
+      margin-bottom: 10px;
+      break-inside: avoid;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .gallery-item img,
+    .gallery-item video {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover img,
+    .gallery-item:hover video {
+      transform: scale(1.05);
+    }
+    
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(51, 62, 72, 0.2);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+  </style>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Images only (videos temporarily removed)
+      const galleryImages = [
+        {type: 'image', src: '/salon/image0.jpeg'},
+        {type: 'image', src: '/salon/image1.jpeg'},
+        {type: 'image', src: '/salon/image2.jpeg'},
+        {type: 'image', src: '/salon/image3.jpeg'},
+        {type: 'image', src: '/salon/image4.jpeg'},
+        {type: 'image', src: '/salon/image5.jpeg'},
+        {type: 'image', src: '/salon/image6.jpeg'},
+        {type: 'image', src: '/salon/image7.jpeg'},
+        {type: 'image', src: '/salon/image8.jpeg'},
+        {type: 'image', src: '/salon/image9.jpeg'},
+        {type: 'image', src: '/salon/image10.jpeg'},
+        {type: 'image', src: '/salon/image11.jpeg'},
+        {type: 'image', src: '/salon/image12.jpeg'},
+        {type: 'image', src: '/salon/image13.jpeg'},
+        {type: 'image', src: '/salon/IMG_0172.jpg'},
+        {type: 'image', src: '/salon/IMG_0173.jpg'},
+        {type: 'image', src: '/salon/IMG_0175.jpg'},
+        {type: 'image', src: '/salon/IMG_9899.JPG'},
+        {type: 'image', src: '/salon/IMG_9903.JPG'},
+        {type: 'image', src: '/salon/e2de766d-6835-4da1-8020-45b3c2f833bf.jpg'},
+        {type: 'image', src: '/salon/image0.jpeg'}
+      ];
+      
+      // Shuffle the gallery items for variety
+      const shuffledGallery = [...galleryImages].sort(() => Math.random() - 0.5);
+      
+      const galleryContainer = document.getElementById('gallery-container');
+      const loadMoreBtn = document.getElementById('load-more');
+      const collapseBtn = document.getElementById('collapse-gallery');
+      let currentIndex = 0;
+      const initialLoad = 4; // Number of items to show initially
+      const itemsPerLoad = 4; // Number of items to load each time
+      let allItems = []; // To keep track of all loaded items
+      
+      // Function to create a gallery item
+      function createGalleryItem(item, index) {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        
+        // Only handling images for now
+        const img = document.createElement('img');
+        img.src = item.src;
+        img.alt = "Hiwi's Beauty Salon hairstyle";
+        img.loading = 'lazy';
+        div.appendChild(img);
+        
+        // Add animation with a delay based on index
+        div.style.opacity = '0';
+        div.style.transform = 'translateY(20px)';
+        div.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+        
+        return div;
+      }
+      
+      // Function to show animation for items
+      function animateItems(items) {
+        setTimeout(() => {
+          items.forEach(item => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          });
+        }, 10);
+      }
+      
+      // Function to load items
+      function loadItems() {
+        const fragment = document.createDocumentFragment();
+        const itemsToLoad = Math.min(itemsPerLoad, shuffledGallery.length - currentIndex);
+        const newItems = [];
+        
+        for (let i = 0; i < itemsToLoad; i++) {
+          const item = shuffledGallery[currentIndex + i];
+          const div = createGalleryItem(item, i);
+          newItems.push(div);
+          fragment.appendChild(div);
+          allItems.push(div); // Keep track of all items
+        }
+        
+        galleryContainer.appendChild(fragment);
+        animateItems(newItems);
+        
+        currentIndex += itemsToLoad;
+        
+        // Show collapse button after loading more items
+        if (currentIndex > initialLoad) {
+          collapseBtn.classList.remove('hidden');
+        }
+        
+        // Hide load more button if all items are loaded
+        if (currentIndex >= shuffledGallery.length) {
+          loadMoreBtn.style.display = 'none';
+        }
+      }
+      
+      // Function to collapse gallery
+      function collapseGallery() {
+        // Keep track of initial items
+        const initialItems = allItems.slice(0, initialLoad);
+        
+        // Create animation for removing items
+        allItems.slice(initialLoad).forEach((item, i) => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(20px)';
+        });
+        
+        // After animation completes, remove extra items
+        setTimeout(() => {
+          // Clear the container
+          galleryContainer.innerHTML = '';
+          
+          // Reset tracking arrays
+          allItems = initialItems;
+          
+          // Add back initial items
+          const fragment = document.createDocumentFragment();
+          initialItems.forEach(item => {
+            // Reset styles for smooth appearance
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+            fragment.appendChild(item);
+          });
+          galleryContainer.appendChild(fragment);
+          
+          // Reset current index
+          currentIndex = initialLoad;
+          
+          // Show load more button and hide collapse button
+          loadMoreBtn.style.display = 'inline-block';
+          loadMoreBtn.classList.add('animate-pulse');
+          collapseBtn.classList.add('hidden');
+        }, 500);
+      }
+      
+      // Initial load
+      loadItems();
+      
+      // Button click handlers
+      loadMoreBtn.addEventListener('click', loadItems);
+      collapseBtn.addEventListener('click', collapseGallery);
+    });
+  </script>
+  
+  <!-- Products Section -->
+  <div id="products" class="call-to-action-section brown">
+    <div class="section-title-group">
+      <h2 class="heading-centered">Products</h2>
+    </div>
+    
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="text-4xl md:text-5xl font-bold text-[#333e48] mb-8 tracking-widest">COMING SOON</div>
+      <p class="para-centered-grey mb-8 max-w-2xl mx-auto">
+        We're excited to bring you our exclusive selection of hair care products.
+      </p>
+      
+      <div class="text-xl text-[#333e48] font-medium mb-12">
+        Contact us for more details
+      </div>
+    </div>
+  </div>
+  
+  <!-- Contact Section -->
+  <div id="contact" class="section">
+    <div class="section-title-group">
+      <h2 class="heading-centered">Visit Us</h2>
+      <div class="section-subheading center max-w-xl mx-auto mb-4">
+        <p class="mb-3">174-176 Stratford Road, Sparkbrook, Birmingham B11 1RD</p>
+        <p class="mb-3">Call: <a href="tel:07438299084" class="text-primary hover:underline">07438 299084</a></p>
+        <p>Opening Hours: Monday - Sunday, 10AM - 10PM</p>
+      </div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto">
+      <!-- Google Maps Embed -->
+      <div class="h-96 border border-[#f3e9da50] overflow-hidden rounded-lg shadow-md">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.5851106223727!2d-1.8817442843712584!3d52.46674337980471!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bc723f260039%3A0x8f0c1a57fd4d4b01!2s174-176%20Stratford%20Rd%2C%20Birmingham%20B11%201RD!5e0!3m2!1sen!2suk!4v1589900961516!5m2!1sen!2suk" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+      
+      <div class="mt-6 text-center">
+        <a href="https://maps.apple.com/?address=174-176%20Stratford%20Road,%20Sparkbrook,%20Birmingham%20B11%201RD,%20United%20Kingdom" target="_blank" rel="noopener noreferrer" class="hollow-button white inline-block mr-4">
+          <i class="fab fa-apple mr-2"></i>APPLE MAPS
+        </a>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=174-176+Stratford+Road+Sparkbrook+Birmingham+B11+1RD" target="_blank" rel="noopener noreferrer" class="hollow-button red inline-block">
+          <i class="fab fa-google mr-2"></i>GOOGLE MAPS
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <div class="footer center">
+    <div class="footer-text">&copy; {new Date().getFullYear()} Hiwi's Beauty. All rights reserved.</div>
+  </div>
+</Layout>

@@ -1,0 +1,17 @@
+.social-footer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 991px) {
+  .social-footer {
+    position: static;
+    margin-top: 20px;
+  }
+}

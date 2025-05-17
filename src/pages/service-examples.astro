@@ -1,0 +1,326 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Service categories grouped
+const serviceGroups = [
+  {
+    category: "HAIR",
+    services: ["HAIR EXTENSIONS", "STYLING", "CUTTING"]
+  },
+  {
+    category: "BRAIDS",
+    services: ["CORNROWS", "TWISTS", "DREADLOCKS"]
+  },
+  {
+    category: "TREATMENTS",
+    services: ["WEAVING", "RELAXER", "WEAVE"]
+  },
+  {
+    category: "INSTALLATIONS",
+    services: ["WIG INSTALLATIONS"]
+  }
+];
+
+// All service categories for examples
+const serviceCategories = [
+  'HAIR EXTENSIONS',
+  'WIG INSTALLATIONS',
+  'CORNROWS',
+  'WEAVING',
+  'STYLING',
+  'CUTTING',
+  'BRAIDS',
+  'DREADLOCKS',
+  'TWISTS',
+  'RELAXER',
+  'WEAVE',
+];
+---
+
+<Layout title="Service Section Examples - Hiwi's Beauty">
+  <div class="pt-10 md:pt-0">
+    <!-- Example 1: Accordion -->
+    <div class="section">
+      <div class="section-title-group">
+        <h2 class="section-heading centered">Example 1: Accordion</h2>
+        <div class="section-subheading center">
+          Click on a category to see services
+        </div>
+      </div>
+      
+      <div class="max-w-3xl mx-auto">
+        {serviceGroups.map((group, index) => (
+          <div class="mb-6 border-b border-[#f3e9da50] pb-4">
+            <div class="accordion-header flex justify-between items-center cursor-pointer" data-accordion={`accordion-${index}`}>
+              <div class="flex items-center">
+                <div class="h3-pricing mr-5">{group.category}</div>
+                <h3 class="text-xl font-medium text-[#333e48]">{group.category}</h3>
+              </div>
+              <button class="text-[#333e48]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+            </div>
+            <div class="accordion-content hidden mt-4 pl-24" id={`accordion-${index}`}>
+              <ul class="space-y-2">
+                {group.services.map(service => (
+                  <li class="para-centered text-left">{service}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Example 2: Tabbed Interface -->
+    <div class="section section-gray">
+      <div class="section-title-group">
+        <h2 class="section-heading centered">Example 2: Tabbed Interface</h2>
+        <div class="section-subheading center">
+          Click tabs to switch between service categories
+        </div>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <!-- Tabs -->
+        <div class="flex flex-wrap justify-center border-b border-[#f3e9da50] mb-8">
+          {serviceGroups.map((group, index) => (
+            <button class={`tab-button px-6 py-3 ${index === 0 ? 'active bg-[#f3e9da50]' : ''}`} data-tab={`tab-${index}`}>
+              {group.category}
+            </button>
+          ))}
+        </div>
+        
+        <!-- Tab Content -->
+        {serviceGroups.map((group, index) => (
+          <div class={`tab-content ${index === 0 ? 'block' : 'hidden'}`} id={`tab-${index}`}>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {group.services.map(service => (
+                <div class="column-0-padding services-20-padding">
+                  <div class="h3-pricing">{service.split(' ')[0]}</div>
+                  <div class="spacer"></div>
+                  <div class="para-centered">{service}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Example 3: Carousel/Slider -->
+    <div class="section">
+      <div class="section-title-group">
+        <h2 class="section-heading centered">Example 3: Carousel/Slider</h2>
+        <div class="section-subheading center">
+          Use arrows to slide through services
+        </div>
+      </div>
+      
+      <div class="max-w-4xl mx-auto relative">
+        <div class="carousel-container overflow-hidden">
+          <div class="carousel-track flex transition-transform duration-300" style="transform: translateX(0%);">
+            {serviceCategories.map((category, index) => (
+              <div class="carousel-item flex-none w-1/3 px-4" style="min-width: 33.333%;">
+                <div class="column-0-padding services-20-padding">
+                  <div class="h3-pricing">{category.split(' ')[0]}</div>
+                  <div class="spacer"></div>
+                  <div class="para-centered">{category}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        <button class="carousel-prev absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#333e48] text-white w-10 h-10 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        
+        <button class="carousel-next absolute top-1/2 right-0 transform -translate-y-1/2 bg-[#333e48] text-white w-10 h-10 rounded-full flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Example 4: Hover Effect Grid -->
+    <div class="section section-gray">
+      <div class="section-title-group">
+        <h2 class="section-heading centered">Example 4: Hover Effect Grid</h2>
+        <div class="section-subheading center">
+          Hover over services to see details
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        {serviceCategories.map(category => (
+          <div class="hover-service relative group cursor-pointer overflow-hidden rounded-lg">
+            <div class="column-0-padding services-20-padding z-10 relative bg-[#f6ede3]">
+              <div class="h3-pricing">{category.split(' ')[0]}</div>
+            </div>
+            
+            <div class="absolute inset-0 bg-[#333e48] flex items-center justify-center opacity-0 group-hover:opacity-95 transition-opacity duration-300">
+              <div class="text-center p-4">
+                <div class="text-white font-medium text-lg mb-2">{category}</div>
+                <p class="text-white text-sm">Specialized treatment by our expert stylists</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    
+    <!-- Example 5: Masonry Layout -->
+    <div class="section">
+      <div class="section-title-group">
+        <h2 class="section-heading centered">Example 5: Masonry Layout</h2>
+        <div class="section-subheading center">
+          Dynamic grid with different sized cards
+        </div>
+      </div>
+      
+      <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 masonry-grid">
+        {serviceCategories.map((category, index) => {
+          const isLarge = index % 5 === 0;
+          const isMedium = index % 3 === 0 && !isLarge;
+          const classes = isLarge 
+            ? 'col-span-2 row-span-2' 
+            : isMedium 
+              ? 'col-span-2' 
+              : '';
+              
+          return (
+            <div class={`bg-[#f6ede3] p-4 rounded-lg ${classes}`}>
+              <div class={`flex ${isLarge || isMedium ? 'flex-row items-center' : 'flex-col items-center'}`}>
+                <div class={`${isLarge ? 'h-24 w-24' : isMedium ? 'h-16 w-16' : 'h-12 w-12'} bg-[#f3e9da] rounded-full flex items-center justify-center mb-2 ${isLarge || isMedium ? 'mr-4 mb-0' : ''}`}>
+                  <span class="text-[#333e48] font-medium">{category.split(' ')[0]}</span>
+                </div>
+                <div>
+                  <h3 class={`text-[#333e48] font-medium ${isLarge ? 'text-xl' : 'text-base'}`}>{category}</h3>
+                  {(isLarge || isMedium) && (
+                    <p class="text-[#737373d9] text-sm mt-1">Expert styling for all hair types</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+    
+    <div class="footer center">
+      <div class="footer-text">Choose the example you prefer to improve the Services section</div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .tab-button.active {
+    border-bottom: 2px solid #333e48;
+    color: #333e48;
+    font-weight: 500;
+  }
+  
+  .masonry-grid {
+    grid-auto-rows: minmax(100px, auto);
+  }
+  
+  .hover-service {
+    transition: transform 0.3s ease;
+  }
+  
+  .hover-service:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hover-service .h3-pricing {
+    transition: all 0.3s ease;
+  }
+  
+  .hover-service:hover .h3-pricing {
+    transform: scale(0.9);
+  }
+  
+  /* Ensure the hover overlay works */
+  .group:hover .group-hover\:opacity-95 {
+    opacity: 0.95;
+  }
+</style>
+
+<script>
+  // Accordion functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    // Handle accordion
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const accordionId = header.getAttribute('data-accordion');
+        const content = document.getElementById(accordionId);
+        content.classList.toggle('hidden');
+        
+        const icon = header.querySelector('.accordion-icon');
+        if (content.classList.contains('hidden')) {
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+    
+    // Handle tabs
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        tabButtons.forEach(btn => btn.classList.remove('active', 'bg-[#f3e9da50]'));
+        
+        // Add active class to clicked button
+        button.classList.add('active', 'bg-[#f3e9da50]');
+        
+        // Hide all tab contents
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabContents.forEach(content => content.classList.add('hidden'));
+        
+        // Show selected tab content
+        const tabId = button.getAttribute('data-tab');
+        document.getElementById(tabId).classList.remove('hidden');
+      });
+    });
+    
+    // Handle carousel
+    let currentSlide = 0;
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel-item');
+    const slideCount = slides.length;
+    const visibleSlides = 3;
+    const totalSlidesVisible = Math.min(visibleSlides, slideCount);
+    
+    document.querySelector('.carousel-next')?.addEventListener('click', () => {
+      currentSlide = (currentSlide + totalSlidesVisible < slideCount) 
+        ? currentSlide + 1
+        : 0;
+      updateCarousel();
+    });
+    
+    document.querySelector('.carousel-prev')?.addEventListener('click', () => {
+      currentSlide = (currentSlide > 0)
+        ? currentSlide - 1
+        : slideCount - totalSlidesVisible;
+      updateCarousel();
+    });
+    
+    function updateCarousel() {
+      const slideWidth = 100 / totalSlidesVisible;
+      const translateX = -currentSlide * slideWidth;
+      if (track) {
+        track.style.transform = `translateX(${translateX}%)`;
+      }
+    }
+  });
+</script>

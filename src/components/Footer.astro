@@ -1,0 +1,65 @@
+---
+const currentYear = new Date().getFullYear();
+
+// Social media links
+const socialLinks = [
+  { name: 'Instagram', icon: 'fa-instagram', url: 'https://www.instagram.com/hiwibeauty/' },
+  { name: 'TikTok', icon: 'fa-tiktok', url: 'https://www.tiktok.com/@hiwibeauty' },
+  { name: 'Facebook', icon: 'fa-facebook-f', url: 'https://www.facebook.com/hiwibeauty' },
+  { name: 'Snapchat', icon: 'fa-snapchat-ghost', url: 'https://www.snapchat.com/add/hiwibeauty' },
+];
+---
+
+<footer class="bg-secondary border-t border-accent/30 text-dark py-16">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <a href="/#" class="text-3xl font-bold tracking-wider text-primary uppercase">Hiwi's Beauty</a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+        <!-- Contact Info -->
+        <div class="text-center">
+          <h3 class="text-lg font-semibold mb-4 text-primary tracking-wider">Location</h3>
+          <address class="not-italic">
+            <p class="mb-2">174-176 Stratford Road</p>
+            <p class="mb-2">Sparkbrook</p>
+            <p class="mb-2">B11 1RD, Birmingham</p>
+          </address>
+        </div>
+        
+        <!-- Opening Hours -->
+        <div class="text-center">
+          <h3 class="text-lg font-semibold mb-4 text-primary tracking-wider">Hours</h3>
+          <p class="mb-2">Monday - Sunday</p>
+          <p class="mb-2">10AM - 10PM</p>
+          <p class="mb-2">
+            <a href="tel:07438299084" class="text-primary hover:underline">07438 299084</a>
+          </p>
+        </div>
+        
+        <!-- Social Links -->
+        <div class="text-center">
+          <h3 class="text-lg font-semibold mb-4 text-primary tracking-wider">Connect</h3>
+          <div class="flex justify-center space-x-6">
+            {socialLinks.map(social => (
+              <a 
+                href={social.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="text-primary hover:text-dark transition-colors"
+                aria-label={social.name}
+              >
+                <i class={`fab ${social.icon} text-xl`}></i>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-accent/30 mt-8 pt-8 text-center text-sm">
+        <p>&copy; {currentYear} Hiwi's Beauty. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</footer>
