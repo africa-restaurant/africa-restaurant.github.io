@@ -38,7 +38,7 @@ const serviceCategories = [
 const galleryImages = Array.from({ length: 14 }, (_, i) => `/salon/image${i}.jpeg`);
 ---
 
-<Layout title="Hiwi's Beauty - Hair Salon in Birmingham">
+<Layout title="Hiwi Beauty & Hair Salon - Hair Salon in Birmingham">
   <!-- Mobile menu toggle - Only visible on mobile -->
   <button id="menuToggle" class="fixed top-6 right-6 z-50 lg:hidden bg-[#333e48] text-white p-3 rounded-full shadow-lg" aria-label="Open menu">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,7 +49,7 @@ const galleryImages = Array.from({ length: 14 }, (_, i) => `/salon/image${i}.jpe
   <!-- Banner/Hero Section -->
   <div class="banner">
     <div class="hero-title-wrapper">
-      <h1 class="hero-heading">Hiwi's Beauty Hair Salon for Men & Women</h1>
+      <h1 class="hero-heading">Hiwi Beauty & Hair Salon for Men & Women</h1>
       <div class="hero-subheading">
         <div class="mb-1">174-176 Stratford Road, Sparkbrook, Birmingham B11 1RD</div>
         <div>Open: Monday - Sunday, 10AM - 10PM</div>
@@ -262,7 +262,7 @@ const galleryImages = Array.from({ length: 14 }, (_, i) => `/salon/image${i}.jpe
         // Only handling images for now
         const img = document.createElement('img');
         img.src = item.src;
-        img.alt = "Hiwi's Beauty Salon hairstyle";
+        img.alt = "Hiwi Beauty & Hair Salon hairstyle";
         img.loading = 'lazy';
         div.appendChild(img);
         
@@ -418,6 +418,6 @@ const galleryImages = Array.from({ length: 14 }, (_, i) => `/salon/image${i}.jpe
   
   <!-- Footer -->
   <div class="footer center">
-    <div class="footer-text">&copy; {new Date().getFullYear()} Hiwi's Beauty. All rights reserved.</div>
+    <div class="footer-text">&copy; {new Date().getFullYear()} Hiwi Beauty & Hair Salon. All rights reserved.</div>
   </div>
 </Layout>
