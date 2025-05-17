@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind';
 // test deploy
 export default defineConfig({
   integrations: [tailwind()],
-  site: 'https://hiwibeauty.github.io',
+  site: 'https://hiwibeauty.co.uk',
   base: '/',
   trailingSlash: 'ignore',
 });
